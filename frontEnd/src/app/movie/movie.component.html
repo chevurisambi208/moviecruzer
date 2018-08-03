@@ -1,0 +1,70 @@
+<div class="container" *ngIf="movie">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="text-center">{{movie.title}}</h2>
+    </div>
+    <br>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <img *ngIf="movie.poster_path" class="img-thumbnail img-responsive" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}">
+          <img *ngIf="!movie.poster_path" class="img-thumbnail img-responsive" src="http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+        </div>
+        <div class="col-md-6">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Original Title:</strong> {{movie.original_title}}
+            </li>
+            <li class="list-group-item">
+              <strong>Cast:</strong>
+              <span *ngFor="let gen of cast">{{gen.name}}, </span>
+            </li>
+            <li class="list-group-item">
+              <strong>Overview:</strong> {{movie.overview}}
+            </li>
+            <li class="list-group-item">
+              <strong>Budget:</strong> {{movie.budget|currency:'USD':true}}
+            </li>
+            <li class="list-group-item">
+              <strong>Genres:</strong>
+              <span *ngFor="let gen of movie.genres">{{gen.name}} </span>
+            </li>
+            <li class="list-group-item">
+              <strong>Release Date:</strong> {{movie.release_date|date:'longDate'}}
+            </li>
+            <li class="list-group-item">
+              <strong>Rating:</strong> {{movie.vote_average}}
+            </li>
+            <li class="list-group-item">
+              <strong>Rating count:</strong> {{movie.vote_count}}
+            </li>
+          </ul>
+          <hr />
+          <form>
+            <div class="form-group">
+              <label for="commentBox">Enter your comments and add it to your watchlist:</label>
+              <input #commentsBox type="/textarea" class="form-control" id="commentsBox" name="commentsBox">
+              <button [hidden]="!inWatchList" id="updateBtn" type="button" class="btn btn-info" (click)="updateComments(movie.id,commentsBox.value)">Update</button>
+            </div>
+          </form>
+          <button [hidden]="inWatchList" id="addBtn" type="button" class="btn btn-primary btn-lg  btn-block" (click)="addToWatchList(movie.id,movie.original_title,commentsBox.value,movie.poster_path,movie.release_date,movie.vote_average,movie.vote_count)">Add to Watchlist</button>
+          <button [hidden]="!inWatchList" id="removeBtn" type="button" class="btn btn-danger btn-lg btn-block" (click)="removeFromWatchList(movie.id)">Remove from Watchlist</button>
+          <br>
+          <a *ngIf="movie.homepage" href="{{movie.homepage}}" target="_blank" class="btn btn-primary btn-lg btn-block">Movie Homepage</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <h3>Recommendations</h3>
+  <div class="row card-group">
+    <div class="col-4" *ngFor="let movies of recommended" (click)="goToDetail(movies.id)">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img *ngIf="movies.poster_path" class="img-thumbnail img-responsive" src="https://image.tmdb.org/t/p/w500/{{movies.poster_path}}">
+          <img *ngIf="!movies.poster_path" class="img-thumbnail img-responsive" src="http://ddbu.billiardport.com/img/posters/no_poster_available.jpg">
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>

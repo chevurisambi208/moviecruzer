@@ -1,0 +1,13 @@
+.navbar {
+	margin-bottom: 30px;
+}
+footer,
+footer .container {
+	background-color: #232323;
+	color: white;
+	font-size: 12px;
+	padding: 2px 0px;
+}
+footer a:hover {
+	text-decoration: none;
+}

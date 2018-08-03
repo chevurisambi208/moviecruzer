@@ -1,0 +1,18 @@
+<h1 class="text-center">The most popular movies right now!</h1>
+<br>
+<div class="container" *ngIf="discMovies.length > 0">
+  <div class="row card-group">
+    <div class="col-4" *ngFor="let movie of discMovies">
+      <div class="card text-center">
+        <a (click)="goToDetail(movie.id)">
+          <div class="media">
+            <img class="d-flex mr-3 img-responsive" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="{{movie.title}}">
+            <div class="media-body">
+              <h5 class="mt-0">{{movie.title}} ({{movie.release_date| date:'y'}})</h5>
+              <p>Rating: {{movie.vote_average}} ({{movie.vote_count}})</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>

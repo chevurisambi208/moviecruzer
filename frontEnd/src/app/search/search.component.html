@@ -1,0 +1,8 @@
+<div class="container">
+  <form>
+    <input name="Searchbox" [(ngModel)]="searchQuery" #searchBox id="search-box" class="form-control" (keyup.enter)="search();searchBox.value=''"
+      type="text" placeholder="Search" aria-label="Search">
+    <br>
+    <button id="search-button" type="button" class="btn btn-primary text-center" (click)="search()">Search</button>
+  </form>
+</div>

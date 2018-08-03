@@ -1,0 +1,16 @@
+.card {
+	border: 0px;
+	margin-bottom: 20px;
+	padding: 15px;
+}
+.media img {
+	height: 250px;
+	width: auto;
+}
+.btn btn-danger movieRemoveBtn{
+	padding: 5px;
+}
+#commentsBox {
+	width: 60%;
+	margin: 0px auto;
+}

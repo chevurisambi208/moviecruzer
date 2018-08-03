@@ -1,0 +1,17 @@
+<div class="container" *ngIf="searchResults.length > 0">
+  <div class="row card-group">
+    <div class="col-4" id="moviesList" *ngFor="let movie of searchResults">
+      <div class="card text-center">
+        <a class="movieItem" (click)="goToDetail(movie.id)">
+          <div class="media">
+            <img class="d-flex mr-3" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="{{movie.title}}">
+            <div class="media-body">
+              <h5 class="mt-0 movieTitle">{{movie.title}} ({{movie.release_date| date:'y'}})</h5>
+              <p>Rating: {{movie.vote_average}} ({{movie.vote_count}})</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
